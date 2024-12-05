@@ -2,6 +2,7 @@
 
 import os
 import platform
+from PIL import Image  # Correct import for Image
 
 class PhotoPrinter:
     """
@@ -16,23 +17,10 @@ class PhotoPrinter:
         """
         self.preset_message = preset_message
 
-    def print_photo(self, photo_file_path):
-        """
-        Prints the photo file path to the console with the preset message,
-        and opens the image in the default image viewer.
-
-        :param photo_file_path: The path to the photo file.
-        """
-        print(f"{self.preset_message} {photo_file_path}")
-        
+    def print_image(self, file_path):
         try:
-            # Open the image using the system's default viewer
-            system_name = platform.system()
-            if system_name == "Windows":
-                os.startfile(photo_file_path)
-            elif system_name == "Darwin":  # macOS
-                os.system(f"open {photo_file_path}")
-            else:  # Linux
-                os.system(f"xdg-open {photo_file_path}")
+            # Corrected line: using Image.open() instead of image.open()
+            image = Image.open(file_path)
+            image.show()  # Opens the image with the default viewer
         except Exception as e:
-            print(f"Error opening photo: {e}")
+            print(f"Error: {e}")

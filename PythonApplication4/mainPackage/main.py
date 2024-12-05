@@ -61,7 +61,7 @@ if __name__ == "__main__":
     printer = PhotoPrinter("Displaying photo file:")
 
     # Use the print_photo method with the correct file path
-    printer.print_photo(photo_path)
+    printer.print_image(photo_path)
     # End Part 6
 
 
